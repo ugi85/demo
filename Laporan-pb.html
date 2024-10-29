@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bicoder|Data barang</title>
+    <meta content="Responsive bootstrap 4 admin template" name="description">
+    <meta content="Coderthemes" name="author">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- CSS Plugins -->
+    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/libs/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- Bootstrap and Icons -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- App css -->
+   <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-stylesheet">
+   <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css"> 
+   <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-stylesheet">
+
+   <!-- Toastr css -->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet">
+
+    <!-- Tambahkan Font Awesome CDN di dalam <head> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    
+   
+
+     <!-- Script to check login status -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!sessionStorage.getItem('isLoggedIn')) {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+    <style>
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .form-control-inline {
+            display: inline-block;
+            width: auto;
+        }
+        .column-selection {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .form-check-inline {
+            margin-right: 10px;
+        }
+    </style>
+   
+    <!-- Begin page -->
+    <div id="wrapper">
+        <!-- Topbar Start -->
+        <div class="navbar-custom">
+            <ul class="list-unstyled topnav-menu float-right mb-0">
+                <li class="dropdown notification-list">
+                    <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <img src="assets/images/users/a3.jpg" alt="user-image" class="rounded-circle">
+                        <span class="pro-user-name ml-1">
+                        <span id="tampil_nama1"></span>
+                            <i class="mdi mdi-chevron-down"></i>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right profile-dropdown">
+                        <div class="dropdown-header noti-title">
+                            <h6 class="text-overflow m-0">Welcome !</h6>
+                        </div>
+                         <!-- item-->
+                         <a href="profile.html" class="dropdown-item notify-item">
+                            <i class="mdi mdi-account-outline"></i>
+                            <span>Profile</span>
+                        </a>
+                       
+                        <div class="dropdown-divider"></div>
+                        <a href="javascript:void(0);" id="logoutButton" class="dropdown-item notify-item">
+                            <i class="mdi mdi-logout-variant"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <div class="logo-box">
+                <a href="main.html" class="logo text-center ">
+                    <span class="logo-lg">
+                        <img src="assets/images/logo-dark1.png" alt="" height="30">
+                        <!-- <span class="logo-lg-text-dark">Velonic</span> -->
+                    </span>
+                    <span class="logo-sm">
+                        <!-- <span class="logo-lg-text-dark">V</span> -->
+                        <img src="assets/images/logo-smb.png" alt="" height="22">
+                    </span>
+                </a>
+
+            </div>
+
+            <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+                <li>
+                    <button class="button-menu-mobile waves-effect">
+                        <i class="mdi mdi-menu"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <!-- end Topbar -->
+
+        <!-- Left Sidebar Start -->
+        <div class="left-side-menu">
+            <div class="slimscroll-menu">
+                <div id="sidebar-menu">
+                    <ul class="metismenu" id="side-menu">
+                        <li id="menu-dashboard">
+                            <a href="main.html">
+                                <i class=" ion ion-ios-home"></i>
+                                <span> Dashboard </span>
+                            </a>
+                        </li>
+                        <li id="menu-data-users">
+                            <a href="data-users.html">
+                                <i class="ion ion-ios-contacts"></i>
+                                <span> Data Users </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="data-part.html">
+                                <i class="ion ion-ios-construct"></i>
+                                <span> Data Parts </span>
+                            </a>
+                        </li>
+                        <li id="menu-add-stock">
+                            <a href="add-stock.html">
+                                <i class="ion ion-md-cube"></i>
+                                <span> Penambahan Stock </span>
+                            </a>
+                        </li>
+                        <li id="menu-get-barang">
+                            <a href="get-barang-user.html">
+                                <i class="ion ion-ios-basket"></i>
+                                <span> Permintaan Barang </span>
+                            </a>
+                        </li>
+                        <li id="menu-barang">
+                            <a href="javascript: void(0);" class="waves-effect">
+                                <i class="ion ion-ios-basket"></i>
+                                <span>Pengambilan Barang</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level nav" aria-expanded="false">
+                                <li>
+                                    <a href="get-barang2.html">Permintaan Barang <span id="pendingCount"></span></a>
+                                </li>
+                                <li>
+                                    <a href="get-barang3.html">Sudah DiVerifikasi</a>
+                                </li>    
+                                <li>
+                                    <a href="get-log.html">Mutasi Transaksi</a>
+                                </li>           
+                            </ul>
+                        </li>
+                        
+                        <li id="menu-report">
+                            <a href="javascript: void(0);" class="waves-effect">
+                                <i class="mdi mdi-share-variant"></i>
+                                <span> Report </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level nav" aria-expanded="false">
+                                <li>
+                                    <a href="Laporan-DP.html">Data Parts</a>
+                                </li>
+                                <li>
+                                    <a href="Laporan-pb.html">Data Pengambilan Barang</a>
+                                </li>
+                                <li>                     
+                                    <a href="Laporan-SM.html">Data Stock Minim</a>
+                                </li>                 
+                                        
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+
+
+        
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+
+        <div class="content-page">
+            <div class="content">
+                <div class="container-fluid">
+    
+                    <!-- Start Page Title -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex justify-content-between align-items-center">
+                                <h4 class="page-title mb-0">Laporan Pengambilan Barang</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Page Title -->
+
+                    <!-- Start Filters -->
+                    <div class="row mb-4">
+                        <!-- Filter Berdasarkan Kolom -->
+                        <div class="col-md-2 col-sm-6 mb-2">
+                            <label for="filterColumn">Pilih Kategori:</label>
+                            <select class="form-control w-100" id="filterColumn" style="max-width: 100%;">
+                                <option value="">--Pilih Kategori--</option>
+                                <option value="departemen">Departemen</option>
+                                <option value="mesin">Mesin</option>
+                                <option value="remark">Remark</option>
+                                <option value="part_name">Part Name</option>
+                                <option value="specification">Specification</option>
+                                <option value="qty">Qty</option>
+                                <option value="requester">Requester</option>
+                                <option value="storeKeeper">Store Keeper/Security</option>
+                            </select>
+                        </div>
+
+                        <!-- Nilai Filter -->
+                        <div class="col-md-3 col-sm-6 mb-2">
+                            <label for="filterValue">Nilai Filter:</label>
+                            <input type="text" class="form-control w-100" id="filterValue" placeholder="Masukkan Nilai Filter" style="max-width: 100%;">
+                        </div>
+
+                        <!-- Filter Berdasarkan Tanggal -->
+                        <div class="col-md-6 col-sm-12 mb-2">
+                            <label>Filter Berdasarkan Tanggal:</label>
+                            <div class="d-flex align-items-end">
+                                <div class="flex-fill me-2 mb-2" style="max-width: 200px;">
+                                    <input type="date" id="startDate" class="form-control" placeholder="Start Date">
+                                </div>
+                                <div class="mb-3 d-flex align-items-center">
+                                    <span class="mx-2">S/D</span>
+                                </div>
+                                <div class="flex-fill me-2 mb-2" style="max-width: 200px;">
+                                    <input type="date" id="endDate" class="form-control" placeholder="End Date">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-3 mb-2">
+                            <button id="applyFilter" class="btn btn-primary">
+                                <i class="fas fa-search"></i> Cari
+                            </button>
+                            <button id="clear" class="btn btn-danger">
+                                <i class="fas fa-times"></i> Clear
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Filters -->
+
+    
+          <!-- Daftar Pilihan Kolom untuk Cetak -->
+          <div class="form-group">
+            <h5>Pilih Kolom yang Akan Dicetak:</h5>
+            <div id="columnSelection" class="d-flex flex-wrap">
+                <div class="form-check form-check-inline col-6 col-sm-4 col-md-3 mb-2">
+                    <input class="form-check-input" type="checkbox" value="Tanggal" id="inlineCheckbox1">
+                    <label class="form-check-label" for="inlineCheckbox1">Tanggal</label>
+                </div>
+                <div class="form-check form-check-inline col-6 col-sm-4 col-md-3 mb-2">
+                    <input class="form-check-input" type="checkbox" value="Waktu" id="inlineCheckbox2">
+                    <label class="form-check-label" for="inlineCheckbox2">Waktu</label>
+                </div>
+                <div class="form-check form-check-inline col-6 col-sm-4 col-md-3 mb-2">
+                    <input class="form-check-input" type="checkbox" value="Departemen" id="inlineCheckbox3">
+                    <label class="form-check-label" for="inlineCheckbox3">Departemen</label>
+                </div>
+                <div class="form-check form-check-inline col-6 col-sm-4 col-md-3 mb-2">
+                    <input class="form-check-input" type="checkbox" value="Machine" id="inlineCheckbox4">
+                    <label class="form-check-label" for="inlineCheckbox4">Mesin</label>
+                </div>
+                <div class="form-check form-check-inline col-6 col-sm-4 col-md-3 mb-2">
+                    <input class="form-check-input" type="checkbox" value="Remark" id="inlineCheckbox5">
+                    <label class="form-check-label" for="inlineCheckbox5">Remark</label>
+                </div>
+                <div class="form-check form-check-inline col-6 col-sm-4 col-md-3 mb-2">
+                    <input class="form-check-input" type="checkbox" value="Part Name" id="inlineCheckbox6">
+                    <label class="form-check-label" for="inlineCheckbox6">Part Name</label>
+                </div>
+                <div class="form-check form-check-inline col-6 col-sm-4 col-md-3 mb-2">
+                    <input class="form-check-input" type="checkbox" value="Specification" id="inlineCheckbox7">
+                    <label class="form-check-label" for="inlineCheckbox7">Specification</label>
+                </div>
+                <div class="form-check form-check-inline col-6 col-sm-4 col-md-3 mb-2">
+                    <input class="form-check-input" type="checkbox" value="Qty" id="inlineCheckbox8">
+                    <label class="form-check-label" for="inlineCheckbox8">Qty</label>
+                </div>
+                <div class="form-check form-check-inline col-6 col-sm-4 col-md-3 mb-2">
+                    <input class="form-check-input" type="checkbox" value="Requester" id="inlineCheckbox9">
+                    <label class="form-check-label" for="inlineCheckbox9">Requester</label>
+                </div>
+                <div class="form-check form-check-inline col-6 col-sm-4 col-md-3 mb-2">
+                    <input class="form-check-input" type="checkbox" value="StoreKeeper" id="inlineCheckbox10">
+                    <label class="form-check-label" for="inlineCheckbox10">Store Keeper/Security</label>
+                </div>
+                <div class="form-check form-check-inline col-6 col-sm-4 col-md-3 mb-2">
+                    <input class="form-check-input" type="checkbox" value="Note" id="inlineCheckbox11">
+                    <label class="form-check-label" for="inlineCheckbox11">Note</label>
+                </div>
+                <div class="form-check form-check-inline col-6 col-sm-4 col-md-3 mb-2">
+                    <input class="form-check-input" type="checkbox" value="Event Log" id="inlineCheckbox12">
+                    <label class="form-check-label" for="inlineCheckbox12">Event Log</label>
+                </div>
+                <div class="form-check form-check-inline col-6 col-sm-4 col-md-3 mb-2">
+                    <input class="form-check-input" type="checkbox" value="Select All" id="selectAllCheckbox">
+                    <label class="form-check-label" for="selectAllCheckbox">Select All</label>
+                </div>
+            </div>
+        </div>
+
+
+            <!-- Tombol Cetak PDF dan Print Preview -->
+            <div class="form-group">
+                <button id="printPreview" class="btn btn-primary waves-effect waves-light btn-sm">Print</button>
+            </div>
+            <div class="form-group" hidden>
+                <button id="printPDF" class="btn btn-danger mt-3">Cetak PDF</button>
+            </div>
+
+            <!-- Tabel Data -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body table-responsive">
+                            <table id="userTable" class="table table-bordered dt-responsive wrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <!-- <th>ID</th> -->
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>Time</th>
+                                        <th>Departemen</th>
+                                        <th>Mesin</th>
+                                        <th>Remark</th>
+                                        <th>Part Name</th>
+                                        <th>Specification</th>
+                                        <th>Qty</th>
+                                        <th>Requester</th>
+                                        <th>Store keeper/Security</th>
+                                        <th>Note</th>
+                                        <th>Event Log</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="loadingSpinner" class="text-center" style="display: none;">
+                            <div class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Start -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            2024 &copy; powered by <a href="">BiCoder | Version 2</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- end Footer -->
+        </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+   
+     <!-- Vendor JS -->
+    <script src="assets/js/vendor.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.14/jspdf.plugin.autotable.min.js"></script>
+    <script src="assets/libs/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="assets/libs/datatables/dataTables.buttons.min.js"></script>
+    <script src="assets/libs/datatables/buttons.bootstrap4.min.js"></script>
+    <script src="assets/libs/jszip/jszip.min.js"></script>
+    <script src="assets/libs/pdfmake/pdfmake.min.js"></script>
+    <script src="assets/libs/pdfmake/vfs_fonts.js"></script>
+    <script src="assets/libs/datatables/buttons.html5.min.js"></script>
+    <script src="assets/libs/datatables/buttons.print.min.js"></script>
+    <script src="assets/libs/datatables/dataTables.responsive.min.js"></script>
+    <script src="assets/libs/datatables/responsive.bootstrap4.min.js"></script>
+    <script src="assets/libs/datatables/dataTables.keyTable.min.js"></script>
+    <script src="assets/libs/datatables/dataTables.select.min.js"></script>
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+
+    <!-- Datatables Init -->
+    <script src="assets/js/pages/datatables.init.js"></script>
+
+    <!-- App JS -->
+    <script src="assets/js/app.min.js"></script>
+
+    <!-- Logout Script -->
+    <script>
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            sessionStorage.removeItem('isLoggedIn');
+            window.location.href = 'index.html';
+        });
+    </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ambil peran pengguna dari sessionStorage
+        const userRole = sessionStorage.getItem('role');
+
+        // Cek apakah pengguna bukan admin
+        if (userRole !== 'admin' && userRole !== 'superadmin') {
+            // Sembunyikan menu "Data Users"
+            const menuDataUsers = document.getElementById('menu-data-users');
+            if (menuDataUsers) {
+                menuDataUsers.style.display = 'none';
+            }
+
+            // Sembunyikan menu "Report"
+            const menuReport = document.getElementById('menu-report');
+            if (menuReport) {
+                menuReport.style.display = 'none';
+            }
+
+            // Sembunyikan menu "Add Stock"
+            const menuAddStock = document.getElementById('menu-add-stock');
+            if (menuAddStock) {
+                menuAddStock.style.display = 'none';
+            }
+        }
+    });
+</script>
+
+    <!-- Link to external JavaScript file -->
+    <script src="main.js"></script>
+   
+    <script>
+    //read data
+    document.addEventListener('DOMContentLoaded', function() {
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwEjyWlMmdloUQhoA4a7uKP7qtgy9RTAY2PViPSTwizMvdT5zEcYZhH41msHNNq9BhN/exec/exec?action=read';
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const filterColumn = document.getElementById('filterColumn');
+    const filterValue = document.getElementById('filterValue');
+    const applyFilterButton = document.getElementById('applyFilter');
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+    const printPreviewButton = document.getElementById('printPreview');
+    const columnSelection = document.getElementById('columnSelection');
+    const printPDFButton = document.getElementById('printPDF');
+
+    let originalData = []; // Array untuk menyimpan data asli
+
+    // Ambil peran pengguna dari sessionStorage
+    const userRole = sessionStorage.getItem('role');
+    // Menyembunyikan tombol "Tambah Item" jika pengguna bukan admin
+    if (userRole !== 'admin' && userRole !== 'superadmin') {
+        if (addButton) addButton.style.display = 'none';
+    }
+
+    // Fungsi untuk menampilkan data di tabel
+    function displayData(users) {
+        const usersTableBody = document.querySelector('#userTable tbody');
+        usersTableBody.innerHTML = ''; // Kosongkan tabel sebelum memuat data baru
+
+        users.forEach((user, index) => {
+            const row = usersTableBody.insertRow();
+
+            row.insertCell(0).textContent = index + 1;
+            row.insertCell(1).textContent = formatDate(user.tanggal);
+            row.insertCell(2).textContent = formatTime(user.waktu);
+            row.insertCell(3).textContent = user.departemen;
+            row.insertCell(4).textContent = user.mesin;
+            row.insertCell(5).textContent = user.remark;
+            row.insertCell(6).textContent = user.part_name;
+            row.insertCell(7).textContent = user.specification;
+            row.insertCell(8).textContent = user.qty;
+            row.insertCell(9).textContent = user.requester;
+            row.insertCell(10).textContent = user.security;
+            row.insertCell(11).textContent = user.note;
+            row.insertCell(12).textContent = user.log;
+        });
+
+        // Inisialisasi ulang DataTable jika dibutuhkan
+        if ($.fn.DataTable.isDataTable('#userTable')) {
+            $('#userTable').DataTable().destroy(); 
+        }
+
+        $('#userTable').DataTable({
+                    responsive: true,
+                    lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+
+                    // paging: false,   // Nonaktifkan pagination
+                    searching: false, // Nonaktifkan pencarian bawaan
+                    info: true      // Sembunyikan informasi jumlah data
+                });
+            }
+
+        
+    
+// Fungsi untuk mengambil data dari API
+function fetchData(filter = {}) {
+    loadingSpinner.style.display = 'block'; // Show loading spinner
+
+    fetch(scriptURL)
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                const originalData = data.data; // Store original data
+                let filteredUsers = [...originalData]; // Copy data for filtering
+
+                // Filter by general input value
+                if (filter.value) {
+                    const searchValue = filter.value.toString().toLowerCase();
+                    filteredUsers = filteredUsers.filter(user => {
+                        const qtyValue = user.qty ? parseInt(user.qty, 10) : 0; // Convert qty to number (null to 0)
+                        return (
+                            (user.part_name && user.part_name.toLowerCase().includes(searchValue)) ||
+                            (user.departemen && user.departemen.toLowerCase().includes(searchValue)) ||
+                            (user.specification && user.specification.toLowerCase().includes(searchValue)) ||
+                            (user.mesin && user.mesin.toLowerCase().includes(searchValue)) ||
+                            (user.supplier1 && user.supplier1.toLowerCase().includes(searchValue)) ||
+                            (user.supplier2 && user.supplier2.toLowerCase().includes(searchValue)) ||
+                            (user.type_part && user.type_part.toLowerCase().includes(searchValue)) ||
+                            (user.description && user.description.toLowerCase().includes(searchValue)) ||
+                            (user.requester && user.requester.toLowerCase().includes(searchValue)) ||
+                            (user.id_part && user.id_part.toLowerCase().includes(searchValue)) ||
+                            (qtyValue === parseInt(filter.value, 10)) // Match qty with filter value
+                        );
+                    });
+                }
+
+                // Filter for location range
+                if (filter.column?.toLowerCase() === 'location' && filter.value) {
+                    const filterValueLower = filter.value.toLowerCase();
+                    filteredUsers = filteredUsers.filter(user => {
+                        const locationValue = user.location ? user.location.toLowerCase() : '';
+                        const rangeMatch = filterValueLower.match(/^(.*?)-(.*?)$/);
+                        if (rangeMatch) {
+                            const startValue = rangeMatch[1].trim();
+                            const endValue = rangeMatch[2].trim();
+                            return isLocationInRangeAlphanumeric(locationValue, startValue, endValue);
+                        } else {
+                            return locationValue.includes(filterValueLower);
+                        }
+                    });
+                }
+
+                // Filter by date range (if applicable)
+                if (filter.startDate && filter.endDate) {
+                    const startDate = new Date(filter.startDate);
+                    const endDate = new Date(filter.endDate);
+
+                    if (!isNaN(startDate) && !isNaN(endDate)) {
+                        filteredUsers = filteredUsers.filter(user => {
+                            const userDate = new Date(user.tanggal);
+                            return userDate >= startDate && userDate <= endDate;
+                        });
+                    } else {
+                        console.warn('Invalid date provided');
+                    }
+                }
+
+                // Sort results by location alphanumerically
+                filteredUsers.sort((a, b) => {
+                    const locationA = a.location ? a.location.toLowerCase() : '';
+                    const locationB = b.location ? b.location.toLowerCase() : '';
+                    return locationA.localeCompare(locationB, undefined, { numeric: true, sensitivity: 'base' });
+                });
+
+                // Display filtered data
+                displayData(filteredUsers);
+            } else {
+                console.error('Error:', data.message);
+            }
+        })
+        .catch(error => console.error('Error fetching data:', error))
+        .finally(() => {
+            loadingSpinner.style.display = 'none'; // Hide loading spinner after data fetch
+        });
+}
+
+// Function to check if locationValue is within the alphanumeric range defined by startValue and endValue
+function isLocationInRangeAlphanumeric(locationValue, startValue, endValue) {
+    const parseLocation = (location) => {
+        const match = location.match(/^([a-zA-Z]+)(\d+)$/); // Separate letters and numbers
+        return match ? [match[1], parseInt(match[2], 10)] : [location, 0];
+    };
+
+    const [locAlpha, locNum] = parseLocation(locationValue);
+    const [startAlpha, startNum] = parseLocation(startValue);
+    const [endAlpha, endNum] = parseLocation(endValue);
+
+    // Compare the alphabetical part first
+    if (locAlpha < startAlpha || locAlpha > endAlpha) {
+        return false;
+    }
+
+    // Compare numerical part if the alphabetical part is equal
+    if (locAlpha === startAlpha && locNum < startNum) {
+        return false;
+    }
+    if (locAlpha === endAlpha && locNum > endNum) {
+        return false;
+    }
+
+    return true;
+}
+       
+    // Fungsi untuk memformat tanggal
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        if (isNaN(date)) return '';  // Mengembalikan string kosong jika input tidak valid
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');  // Bulan dimulai dari 0
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+    }
+
+    // Fungsi untuk memformat waktu
+    function formatTime(timeString) {
+        const time = new Date(timeString);
+        if (isNaN(time)) return '';  // Mengembalikan string kosong jika input tidak valid
+        const hours = String(time.getHours()).padStart(2, '0');
+        const minutes = String(time.getMinutes()).padStart(2, '0');
+        return `${hours}:${minutes}`;
+    }
+
+     // Event listener untuk tombol clear
+     document.getElementById('clear').addEventListener('click', () => {
+                // Kosongkan nilai filter
+                document.getElementById('filterColumn').value = ''; // Menghapus pilihan kolom filter
+                document.getElementById('filterValue').value = '';  // Menghapus nilai filter (jika ada elemen dengan ID 'filterValue')
+
+                // Refresh halaman penuh
+                window.location.reload(); // Refresh halaman setelah form di-reset
+            });
+
+    // Event listener untuk tombol filter
+    applyFilterButton.addEventListener('click', () => {
+        const filterColumnValue = filterColumn.value;
+        const filterValueText = filterValue.value;
+        const startDateValue = startDateInput.value;
+        const endDateValue = endDateInput.value;
+
+        if (startDateValue && endDateValue) {
+            const startDate = new Date(startDateValue);
+            const endDate = new Date(endDateValue);
+
+            if (isNaN(startDate) || isNaN(endDate)) {
+                alert('Tanggal tidak valid.');
+                return;
+            }
+
+            if (startDate > endDate) {
+                alert('Tanggal mulai tidak boleh lebih besar dari tanggal akhir.');
+                return;
+            }
+        }
+
+        fetchData({
+            column: filterColumnValue,
+            value: filterValueText,
+            startDate: startDateValue,
+            endDate: endDateValue
+        });
+
+        // Setelah filter diterapkan, reset form input filter jika diinginkan
+        filterColumn.value = ''; // Menghapus pilihan kolom filter
+        filterValue.value = ''; // Menghapus nilai filter
+        startDateInput.value = ''; // Menghapus nilai tanggal mulai
+        endDateInput.value = ''; // Menghapus nilai tanggal akhir
+    });
+
+    // Checkbox "Select All"
+    const selectAllCheckbox = document.getElementById('selectAllCheckbox');
+
+// Event listener untuk "Select All"
+selectAllCheckbox.addEventListener('change', function() {
+    const checkboxes = columnSelection.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = selectAllCheckbox.checked; // Set semua checkbox sesuai status "Select All"
+    });
+});
+
+
+    // Event listener untuk tombol print preview
+printPreviewButton.addEventListener('click', function() {
+    const selectedColumns = [];
+    const checkboxes = columnSelection.querySelectorAll('input[type="checkbox"]:checked');
+    const tableData = [];
+
+    // Tambahkan kolom "No" secara manual agar selalu ada
+    selectedColumns.push('No');
+
+    // Mengambil nilai dari checkbox yang dipilih (nama kolom)
+    checkboxes.forEach(checkbox => {
+        selectedColumns.push(checkbox.value);
+    });
+
+    // Jika "Select All" dipilih, masukkan semua kolom
+    if (selectAllCheckbox.checked) {
+        selectedColumns.length = 0; // Reset kolom yang dipilih
+        const allColumns = ['No','Tanggal', 'Waktu', 'Departemen', 'Machine', 'Remark', 'Part Name', 'Specification', 'Qty', 'Requester', 'StoreKeeper', 'Note', 'Event Log'];
+        selectedColumns.push(...allColumns); // Masukkan semua kolom
+    }
+
+    // Periksa apakah ada kolom yang dipilih (selain "No")
+    if (selectedColumns.length === 1) { // hanya "No" yang dipilih
+        alert("Silakan pilih kolom yang ingin dicetak.");
+        return; // Jika tidak ada kolom yang dipilih, keluar dari fungsi
+    }
+
+    const rows = document.querySelectorAll('#userTable tbody tr');
+
+    // Mengumpulkan data dari tabel, sesuai kolom yang dipilih
+    rows.forEach(row => {
+        const rowData = [];
+        const cells = row.querySelectorAll('td');
+        
+        selectedColumns.forEach(colName => {
+            let cellValue = '';
+            switch(colName) {
+                case 'No':
+                    cellValue = cells[0].innerText;
+                    break;
+                case 'Tanggal':
+                    cellValue = cells[1].innerText; // Sesuaikan indeks sesuai urutan tabel
+                    break;
+                case 'Waktu':
+                    cellValue = cells[2].innerText;
+                    break;
+                case 'Departemen':
+                    cellValue = cells[3].innerText;
+                    break;
+                case 'Machine':
+                    cellValue = cells[4].innerText;
+                    break;
+                case 'Remark':
+                    cellValue = cells[5].innerText;
+                    break;
+                case 'Part Name':
+                    cellValue = cells[6].innerText;
+                    break;
+                case 'Specification':
+                    cellValue = cells[7].innerText;
+                    break;
+                case 'Qty':
+                    cellValue = cells[8].innerText;
+                    break;
+                case 'Requester':
+                    cellValue = cells[9].innerText;
+                    break;
+                case 'StoreKeeper':
+                    cellValue = cells[10].innerText;
+                    break;
+                case 'Note':
+                    cellValue = cells[11].innerText;
+                    break;
+                case 'Event Log':
+                    cellValue = cells[12].innerText;
+                    break;
+                // Tambahkan case untuk kolom tambahan jika ada
+                default:
+                    cellValue = '';
+            }
+            rowData.push(cellValue);
+        });
+        
+        tableData.push(rowData); // Menyimpan data sesuai kolom yang dipilih
+    });
+
+    // Simpan data ke localStorage untuk dikirim ke halaman pratinjau
+    localStorage.setItem('selectedColumns', JSON.stringify(selectedColumns));
+    localStorage.setItem('tableData', JSON.stringify(tableData));
+
+    // Buka halaman print preview terpisah
+    window.open('lamancetakpb.html', '_blank', 'width=800,height=600');
+});
+    })
+    </script>
+    <script>
+        // Tampilkan nama pengguna di navbar saat halaman utama dimuat
+        window.onload = function() {
+     const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+     const show_username = sessionStorage.getItem('username'); 
+    
+     if (isLoggedIn === 'true' && show_username) {
+         // Untuk ID unik
+         document.getElementById('tampil_nama1').textContent = show_username;
+         document.getElementById('tampil_nama2').textContent = show_username;
+         
+     }
+    }
+    </script>
+</body>
+</html>
